@@ -354,7 +354,7 @@ const Mendoza = () => {
             Boost your Fuliza Limit
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-emerald-200/70">
-           Choose your target limit and complete a secure payment to upgrade instantly.
+           Choose your target fuliza limit and complete payment to upgrade instantly.
           </p>
         </header>
 
