@@ -248,12 +248,12 @@ const PayModal = ({ tier, onClose }) => {
             <h2 id="pay-modal-title" className="text-xl font-bold text-white">
               Complete Your Request
             </h2>
-            <p className="mt-1 text-sm text-emerald-200/70">Enter your details to boost your limit</p>
+            <p className="mt-1 text-sm text-emerald-200/70">Enter your details and pay Ksh {fmt(tier.fee)} to increase your fuliza limit</p>
 
             {/* Summary */}
             <div className="mt-5 rounded-2xl border border-emerald-800 bg-emerald-950/60 p-4">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-emerald-300/70">New limit</span>
+                <span className="text-emerald-300/70">Fuliza limit</span>
                 <span className="font-semibold text-white">Ksh {fmt(tier.limit)}</span>
               </div>
               <div className="mt-3 flex items-center justify-between border-t border-emerald-800 pt-3 text-sm">
@@ -386,7 +386,7 @@ const Mendoza = () => {
                   </span>
                 )}
                 <p className={`text-xs ${active ? 'text-emerald-900' : 'text-emerald-300/70'}`}>
-                  New limit
+                  Fuliza limit
                 </p>
                 <p className="mt-1 text-xl font-bold">Ksh {fmt(t.limit)}</p>
                 <div
@@ -394,7 +394,7 @@ const Mendoza = () => {
                     active ? 'border-emerald-950/20' : 'border-emerald-800'
                   }`}
                 >
-                  <span className={active ? 'text-emerald-900' : 'text-emerald-300/70'}>Fee</span>
+                  <span className={active ? 'text-emerald-900' : 'text-emerald-300/70'}>Pay</span>
                   <span className="text-sm font-semibold">Ksh {fmt(t.fee)}</span>
                 </div>
               </button>
