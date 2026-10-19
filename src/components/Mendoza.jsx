@@ -22,6 +22,9 @@ const POLL_MAX = 30 // ~90s
 
 const fmt = (n) => n.toLocaleString('en-KE')
 
+// Only ever render strings. Proxies/CDNs can return { error: { code, message } } objects.
+const toText = (v, fallback) => (typeof v === 'string' && v.trim() ? v : fallback)
+
 // Accepts 07XXXXXXXX, 01XXXXXXXX, 7XXXXXXXX, 1XXXXXXXX, 2547XXXXXXXX, +2547XXXXXXXX
 const normalizePhone = (raw) => {
   const d = raw.replace(/\D/g, '')
@@ -73,12 +76,12 @@ const PayModal = ({ tier, onClose }) => {
         const data = await res.json().catch(() => ({}))
         if (cancelled) return
         if (data.status === 'paid') {
-          setReceipt(data.mpesa_receipt || null)
+          setReceipt(typeof data.mpesa_receipt === 'string' ? data.mpesa_receipt : null)
           setStep('paid')
           return
         }
         if (data.status === 'failed') {
-          setFailMsg(data.message || 'The payment was not completed.')
+          setFailMsg(toText(data.message, 'The payment was not completed.'))
           setStep('failed')
           return
         }
@@ -124,7 +127,9 @@ const PayModal = ({ tier, onClose }) => {
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok || !data.success) {
-        setApiError(data.error || 'Could not send the M-Pesa prompt. Please try again.')
+        setApiError(
+          toText(data.error, 'Could not send the M-Pesa prompt. Please try again.')
+        )
         return
       }
       setReference(data.reference)
