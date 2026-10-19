@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+
+/* Keep ONE of these, based on what you found in DevTools: */
+@custom-variant dark (&:where(.dark, .dark *));
+/* @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *)); */
+
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+  body {
+    @apply bg-gray-50 font-sans antialiased dark:bg-gray-900;
+    letter-spacing: 0.18px;
+    text-rendering: optimizeLegibility;
+  }
+}
